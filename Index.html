@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>عرض وطباعة الملف</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f7f7f7;
+      padding: 20px;
+    }
+    #pdf-viewer {
+      width: 80%;
+      height: 600px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      margin: 20px auto;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    button:disabled {
+      background: gray;
+      cursor: not-allowed;
+    }
+    button:hover:not(:disabled) {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>عرض وطباعة الملف</h2>
+  <iframe id="pdf-viewer" src="your-file.pdf"></iframe>
+  <br>
+  <button id="printBtn">🖨️ طباعة الملف مرة واحدة</button>
+
+  <script>
+    const printBtn = document.getElementById("printBtn");
+
+    printBtn.addEventListener("click", () => {
+      const iframe = document.getElementById("pdf-viewer");
+      iframe.contentWindow.focus();
+      iframe.contentWindow.print();
+
+      // تعطيل الزر بعد الطباعة
+      printBtn.disabled = true;
+      printBtn.textContent = "تم الطباعة ✅";
+    });
+  </script>
+
+</body>
+</html>
